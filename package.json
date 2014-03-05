@@ -1,0 +1,10 @@
+{
+  "name": "TTS Project",
+  "main": "index.html",
+  "window" : {
+    "width" : 300,
+    "height" : 300,
+    "toolbar" : true,
+    "frame" : true
+  }
+}

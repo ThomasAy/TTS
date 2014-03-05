@@ -1,0 +1,51 @@
+html {
+  	margin: 0px;
+  	padding: 0px;
+  	overflow: hidden;
+}
+
+body {
+	-webkit-app-region: drag;
+  	margin: 0px;
+  	padding: 0px;
+  	font-size: 12px;
+  	width: 100%;
+	height: 100%;
+}
+
+
+
+header, button, input, textarea, a {
+	-webkit-app-region: no-drag;
+}
+
+header a {
+	color: #C0C0C0;
+	font-size: 0.8rem;
+	text-decoration: none;
+}
+
+#minimalize {
+	
+}
+
+#close {
+
+}
+
+#toolbar {
+	-webkit-app-region: drag;
+}
+
+#iframes{
+	position: relative;
+	width:100%;
+	height:100%;
+}
+#website {
+	overflow: scroll;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+
+}
