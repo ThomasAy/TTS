@@ -2,9 +2,10 @@
   "name": "TTS Project",
   "main": "index.html",
   "window" : {
-    "width" : 300,
-    "height" : 300,
+    "width" : 500,
+    "height" : 500,
     "toolbar" : true,
     "frame" : true
-  }
+  },
+  "chromium-args" : "--enable-speech-recognition"
 }
