@@ -1,18 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <script>
+// <![CDATA[
+function retaille ()
+{
+parent.window.resizeTo(1017,675);
+parent.window.moveTo(0, 0);
+}
+// ]]>
+</script>
+</head>
   <title>TTS</title>
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body onload = "retaille()">
     <header>
-        <button data-role="prev">Precedent</button>
-        <section id="navbar ">
-            <input id="omnibar" type="search" placeholder="Entrez une URL ou une recherche" />
-            <button data-role="submit">Valider</button>
+        <button data-role="prev"><img class="icon" src="assets/icon/SVG/arrow-left.svg"></button>
+        <section id="navbar">
+            <input id="omnibar" type="search" placeholder="" />
+            <button data-role="submit"><img class="icon" src="assets/icon/SVG/magnifying-glass.svg"></button>
         </section>
-        <button data-role="next">Suivant</button>
-        <button data-role="close">Fermer</button>
+        <button data-role="next"><img class="icon" src="assets/icon/SVG/arrow-right.svg"></button>
+        <button data-role="close"><img class="icon" src="assets/icon/SVG/x.svg"></button>
     </header>
     <section id="website-views">
       <iframe id="real-website" src="" style="display:none;" frameborder="0" nwUserAgent></iframe>
@@ -21,11 +31,11 @@
       </section>
     </section>
     <aside>
-      <button data-role="zoomIn">Zoom +</button>
-      <button data-role="zoomOut">Zoom -</button>
-      <button data-role="color">Option Couleur</button>
-      <button data-role="speechRecognition">Reconnaissance vocale</button>
-      <button data-role="volume">Volume</button>
+      <button data-role="zoomIn"><img class="icon" src="assets/icon/SVG/plus.svg"></button>
+      <button data-role="zoomOut"><img class="icon" src="assets/icon/SVG/minus.svg"></button>
+      <button data-role="color"><img class="icon" src="assets/icon/SVG/brush.svg"></button>
+      <button data-role="speechRecognition"><img class="icon" src="assets/icon/SVG/microphone.svg"></button>
+      <button data-role="volume"><img class="icon" src="assets/icon/SVG/volume-high.svg"></button>
     </aside>
   <script type="text/javascript" src="vendor/mousetrap.min.js"></script>
   <script type="text/javascript" src="scripts/commands.js"></script>
