@@ -1,12 +1,14 @@
 body{
 	min-width: 1017px;
 	min-height: 675px;
+	width: 100%;
+	height: 100%;
 }
 
 html{overflow:hidden} 
 
 header{
-	width: 1200px;
+	width: 100%;
 	height: 100px;
 }
 
@@ -33,7 +35,7 @@ aside{
 
 #navbar {
 	background-color: #4468be;
-	width: 700px;
+	width: -webkit-calc(100% - 300px);
 	height: 96px;
 	position: absolute;
 	top: 0px;
@@ -44,12 +46,13 @@ aside{
 }
 
 #omnibar{
-	width: 550px;
-	height: 50px;
-	position: relative;
-	left: 25px;
-	top: 40px; 
+	width: -webkit-calc(80% - 100px);
+	height: 80px;
+	position: absolute;
+	top: 10px; 
 	border: solid 5px black;
+	margin-left: -webkit-calc(10%);
+	font-size: 200%;
 }
 
 button{
@@ -65,9 +68,10 @@ button[data-role="submit"]{
 	border-left: solid 2px black;
 	border-right:solid 2px black; 
 	border-bottom:solid 4px black;
-	position: absolute;
-	top: 0px;
-	left: 600px;
+	/* position: absolute; */
+	/* top: 0px; */
+	/* margin-left: 130px; */
+	float: right;
 }
 
 button[data-role="next"]{
