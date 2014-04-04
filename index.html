@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script>
-// <![CDATA[
-function retaille ()
-{
-parent.window.resizeTo(1017,675);
-parent.window.moveTo(0, 0);
-}
-// ]]>
-</script>
-</head>
+    <script>
+        // <![CDATA[
+        function retaille ()
+        {
+        parent.window.resizeTo(1017,675);
+        parent.window.moveTo(0, 0);
+        }
+        // ]]>
+    </script>
   <title>TTS</title>
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body onload = "retaille()">
+<body onload="retaille()">
     <header>
         <button data-role="prev"><img class="icon" src="assets/icon/SVG/arrow-left.svg"></button>
         <section id="navbar">
@@ -41,5 +40,7 @@ parent.window.moveTo(0, 0);
   <script type="text/javascript" src="scripts/commands.js"></script>
   <script type="text/javascript" src="scripts/shortcuts.js"></script>
   <script type="text/javascript" src="scripts/app.js"></script>
+  <script src="scripts/tts.js"></script>
+  <script>lecture('Bonsoir les amis, j\'espère que ça marche');</script>
 </body>
 </html>
