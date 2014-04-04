@@ -419,19 +419,33 @@ function parle(mot) {
         var request =   http.get('http://voxygen.fr/sites/all/modules/voxygen_voices/assets/proxy/index.php?method=redirect&voice=Homer40min&ts=1393856393019&text='+sVar1, function(response) {
                             http.get(response.headers.location, function(res) {
                                 res.pipe(file);
-                                var player = new Audio(directory+fichier);
-                                player.play();
                             });
                         });
     }
     else {
-        var player = new Audio(directory+fichier);
-        player.play();
+        
     }
 }
 function lecture(phrase) {
-    var temp = phrase.split(' ');
+    var directory = 'assets/audio/',
+        temp = phrase.split(' '),
+        player = new Audio(),
+        i = 0;
+    
     for (var key in temp){
         parle(temp[key]);
     }
+    player.src = directory+MD5(temp[i])+'.mp3';
+    player.play();
+    player.addEventListener('ended',function(){
+        console.log('test');
+        if(typeof(temp[i]) !== 'undefined') {
+            i++;
+            player.src = directory+MD5(temp[i])+'.mp3';
+            player.pause();
+            player.load();
+            player.play();
+            console.log(i);
+        }
+    });
 }
