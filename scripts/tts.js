@@ -439,8 +439,9 @@ function lecture(phrase) {
     player.play();
     player.addEventListener('ended',function(){
         console.log('test');
+        i++;
         if(typeof(temp[i]) !== 'undefined') {
-            i++;
+            
             player.src = directory+MD5(temp[i])+'.mp3';
             player.pause();
             player.load();
