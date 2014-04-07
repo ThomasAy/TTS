@@ -4,8 +4,8 @@
   "window" : {
     "width" : 500,
     "height" : 500,
-    "toolbar" : true,
-    "frame" : true
+    "toolbar" : false,
+    "frame" : false
   },
   "chromium-args" : "--enable-speech-recognition"
 }
