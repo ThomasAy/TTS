@@ -444,13 +444,11 @@ function speak(mot) {
 }
 function read(phrase) {
     var directory = 'assets/audio/'+voice+'/',
-        reg = new RegExp("[?.!]", "g");
+        reg = new RegExp("[?\.!]", "g");
         temp = phrase.split(reg),
         player = new Audio(),
         i = 0;
-    if(typeof(temp[1]) === 'undefined') {
-        temp[0] = temp;
-    }
+    console.log(temp);
     for (var key in temp){
         speak(temp[key]);
     }
