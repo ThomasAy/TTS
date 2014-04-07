@@ -1,7 +1,7 @@
 //Initialisation de la voix du personnage
 var settings = localStorage.getItem('settings');
 if(settings === null) {
-    settings = {voice: 'Homer40min'};
+    settings = {voice: 'Murphy'};
     localStorage.setItem('settings', JSON.stringify(settings));
 }
 else {
@@ -447,17 +447,17 @@ function read(phrase) {
         reg = new RegExp("[?\.!]", "g");
         temp = phrase.split(reg),
         player = new Audio(),
-        i = 0;
-    console.log(temp);
+        count = 0;
     for (var key in temp){
         speak(temp[key]);
     }
-    player.src = directory+MD5(temp[i])+'.mp3';
+
+    player.src = directory+MD5(temp[count])+'.mp3';
     player.play();
     player.addEventListener('ended',function(){
-        i++;
-        if(typeof(temp[i]) !== 'undefined') {      
-            player.src = directory+MD5(temp[i])+'.mp3';
+        count++;
+        if(typeof(temp[count]) !== 'undefined') {      
+            player.src = directory+MD5(temp[count])+'.mp3';
             player.pause();
             player.load();
             player.play();
