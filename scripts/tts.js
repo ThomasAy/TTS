@@ -8,6 +8,12 @@ else {
     settings = JSON.parse(localStorage.getItem('settings'));
 }
 var voice = settings.voice;
+//Permet de changer la voix de l'application
+//Paramètre : (String)voice
+function changeVoice(voice) {
+    settings.voice = voice;
+    localStorage.setItem('settings', JSON.stringify(settings));
+}
 /*
  *  md5.js 1.0b 27/06/96
  *
@@ -420,7 +426,7 @@ function speak(mot) {
     var fs = require('fs'),
         http = require('http'), 
         fichier = MD5(mot)+'.mp3',
-        directory = 'assets/audio/',
+        directory = 'assets/audio/'+voice+'/',
         sVar1;
     if (!fs.existsSync(directory+fichier)) {
         sVar1 = encodeURIComponent(mot);
@@ -437,8 +443,9 @@ function speak(mot) {
     }
 }
 function read(phrase) {
-    var directory = 'assets/audio/',
-        temp = phrase.split(' '),
+    var directory = 'assets/audio/'+voice+'/',
+        reg = new RegExp("[?.!]", "g");
+        temp = phrase.split(reg),
         player = new Audio(),
         i = 0;
     
