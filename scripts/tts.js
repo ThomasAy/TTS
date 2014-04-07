@@ -1,3 +1,13 @@
+//Initialisation de la voix du personnage
+var settings = localStorage.getItem('settings');
+if(settings === null) {
+    settings = {voice: 'Homer40min'};
+    localStorage.setItem('settings', JSON.stringify(settings));
+}
+else {
+    settings = JSON.parse(localStorage.getItem('settings'));
+}
+var voice = settings.voice;
 /*
  *  md5.js 1.0b 27/06/96
  *
@@ -404,7 +414,7 @@ function MD5(message)
  return s;
 }
 
-function parle(mot) {
+function speak(mot) {
     var querystring = require('querystring');
     var http = require('http');
     var fs = require('fs'),
@@ -416,7 +426,7 @@ function parle(mot) {
         sVar1 = encodeURIComponent(mot);
         //options to use
         var file = fs.createWriteStream(directory+fichier);
-        var request =   http.get('http://voxygen.fr/sites/all/modules/voxygen_voices/assets/proxy/index.php?method=redirect&voice=Homer40min&ts=1393856393019&text='+sVar1, function(response) {
+        var request =   http.get('http://voxygen.fr/sites/all/modules/voxygen_voices/assets/proxy/index.php?method=redirect&voice='+voice+'&ts=1393856393019&text='+sVar1, function(response) {
                             http.get(response.headers.location, function(res) {
                                 res.pipe(file);
                             });
@@ -426,27 +436,24 @@ function parle(mot) {
         
     }
 }
-function lecture(phrase) {
+function read(phrase) {
     var directory = 'assets/audio/',
         temp = phrase.split(' '),
         player = new Audio(),
         i = 0;
     
     for (var key in temp){
-        parle(temp[key]);
+        speak(temp[key]);
     }
     player.src = directory+MD5(temp[i])+'.mp3';
     player.play();
     player.addEventListener('ended',function(){
-        console.log('test');
         i++;
-        if(typeof(temp[i]) !== 'undefined') {
-            
+        if(typeof(temp[i]) !== 'undefined') {      
             player.src = directory+MD5(temp[i])+'.mp3';
             player.pause();
             player.load();
             player.play();
-            console.log(i);
         }
     });
 }
