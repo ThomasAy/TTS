@@ -448,7 +448,9 @@ function read(phrase) {
         temp = phrase.split(reg),
         player = new Audio(),
         i = 0;
-    
+    if(typeof(temp[1]) === 'undefined') {
+        temp[0] = temp;
+    }
     for (var key in temp){
         speak(temp[key]);
     }
