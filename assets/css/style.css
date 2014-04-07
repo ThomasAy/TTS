@@ -125,3 +125,39 @@ button[data-role="volume"]{
 	height: 70px;
 	width: 70px;
 }
+
+.btn_lang{
+	width: 100%;
+	height: 133px;
+	font-size: 30px;
+	border: solid 2px black;
+}
+
+.popup{
+	width: 500px;
+	height: 400px;
+	background-color: #ff3838;
+
+}
+
+.titre{
+	text-align: center;
+	font-size: 50px;
+	margin: auto;
+
+}
+
+.cadre{
+	border: solid 2px black;
+}
+
+button[data-role="homme"]{
+	background-color: #919df5;}
+
+button[data-role="femme"]{
+	background-color: #919df5;}
+
+button[data-role="homer"]{
+	background-color: #919df5;}
+
+.btn_lang:hover{border:2px solid white;background-color:#21bc30;}
