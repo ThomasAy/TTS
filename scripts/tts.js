@@ -274,24 +274,10 @@ Player.prototype.download = function(key) {
             });
         }
         else {
+            objectPlayer.downloadedArray[key] = true;
+            objectPlayer.verifArray();
             this.download(key+1);
         }
-            /*sVar1 = encodeURIComponent(this.array[key]);
-            http.get('http://voxygen.fr/sites/all/modules/voxygen_voices/assets/proxy/index.php?method=redirect&voice='+voice+'&ts=1393856393019&text='+sVar1, function(response) {
-                http.get(response.headers.location, function(res) {
-                    //file[key] = fs.createWriteStream(directory+fichier);
-                    //res.pipe(file[key]);
-                    //objectPlayer.downloadedArray[key] = true;
-                    //objectPlayer.verifArray();
-                    this.download(key+1);
-                });
-            });
-        }
-        else {
-            this.downloadedArray[key] = true;
-            this.verifArray();
-            this.download(key+1);
-        }*/
     }
     
     
