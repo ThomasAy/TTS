@@ -1,0 +1,2 @@
+document.querySelectorAll('h1,h2,h3,h4,h5,h6,p,a,select,option,input,form,button,img,table,label,textarea,video');
+{h1:'titre de niveau 1',h2:'titre de niveau 2',h3:'titre de niveau 3',h4:'titre de niveau 4',h5:'titre de niveau 5',h6:'titre de niveau 6',p:'paragraphe',a:'lien',select:'liste de choix',option:'choix',input:'champs de saisie',form:'formulaire',button:'bouton',img:'image',table:'tableau',label:'libellé',textarea:'zone de saisie',video:'vidéo';}
