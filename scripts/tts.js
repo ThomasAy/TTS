@@ -292,13 +292,14 @@ Player.prototype.play = function() {
     var directory = 'assets/audio/'+voice+'/',
         objectPlayer = this;
     this.player.addEventListener('ended', function() {
-        objectPlayer.boucle++;
+        var test = new Audio('assets/audio/Homer40min/char/100.mp3');
+        test.play();
+        /*objectPlayer.boucle++;
         if(objectPlayer.boucle < objectPlayer.array.length) {
+            console.log(objectPlayer.array[objectPlayer.boucle]);
             objectPlayer.player = new Audio(directory+MD5(objectPlayer.array[objectPlayer.boucle])+'.mp3');
-            objectPlayer.player.pause();
-            objectPlayer.player.load();
             objectPlayer.player.play();
-        }
+        }*/
     });
     this.player.src = directory+MD5(this.array[this.boucle])+'.mp3';
     this.player.play();
