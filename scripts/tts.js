@@ -245,10 +245,6 @@ function Player(tableau) {
     for (var key in this.array){
         this.downloadedArray[key] = false;
     }
-    this.player.autoplay = true;
-    this.player.loop = false;
-    this.player.volume = 1;
-    this.player.onloadeddata = this.player.play();
 };
 Player.prototype.download = function() {
     var querystring = require('querystring'),
@@ -303,8 +299,9 @@ Player.prototype.play = function() {
         this.player.addEventListener('ended', function(event) {
             objectPlayer.boucle++;
             if(objectPlayer.boucle < objectPlayer.array.length) {
-                this.src = directory+MD5(objectPlayer.array[objectPlayer.boucle])+'.mp3';
-                this.play();
+                objectPlayer.player = new Audio(directory+MD5(objectPlayer.array[objectPlayer.boucle])+'.mp3');
+                objectPlayer.player.load();
+                objectPlayer.player.play();
             }
         });
     }
