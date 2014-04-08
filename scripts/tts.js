@@ -245,6 +245,10 @@ function Player(tableau) {
     for (var key in this.array){
         this.downloadedArray[key] = false;
     }
+    this.player.autoplay = true;
+    this.player.loop = false;
+    this.player.volume = 1;
+    this.player.onloadeddata = this.player.play();
 };
 Player.prototype.download = function() {
     var querystring = require('querystring'),
@@ -288,17 +292,16 @@ Player.prototype.verifArray = function() {
         this.play();
     }
 };
-var aud = new Audio();
 Player.prototype.play = function() {
     var directory = 'assets/audio/'+voice+'/';
     if(this.boucle < this.array.length) {
         console.log(this.array[this.boucle]);
-        aud.src = directory+MD5(this.array[this.boucle])+'.mp3';
-        aud.play();
+        this.player.src = directory+MD5(this.array[this.boucle])+'.mp3';
+        //this.player.play();
     }
     if(this.boucle === 0) {
         this.boucle++;
-        aud.addEventListener('ended',this.play());
+        this.player.addEventListener('ended',this.play());
     }
     else {
         this.boucle++;
