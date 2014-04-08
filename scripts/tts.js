@@ -295,14 +295,12 @@ Player.prototype.play = function() {
         objectPlayer = this;
     this.player.addEventListener('ended', function() {
         objectPlayer.boucle++;
-        if(objectPlayer.boucle < objectPlayer.array.length) {
-            console.log(objectPlayer.array[objectPlayer.boucle]);
-            objectPlayer.player = new Audio(directory+MD5(objectPlayer.array[objectPlayer.boucle])+'.mp3');
-            objectPlayer.player.play();
-        }
+        objectPlayer.play();
     });
-    this.player.src = directory+MD5(this.array[this.boucle])+'.mp3';
-    this.player.play();
+    if(this.boucle < this.array.length) {
+        this.player.src = directory+MD5(this.array[this.boucle])+'.mp3';
+        this.player.play();
+    }
 };
 
 document.addEventListener('keydown',function(){
