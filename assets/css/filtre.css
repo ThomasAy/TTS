@@ -1,2 +1,53 @@
 document.body.querySelectorAll('h1,h2,h3,h4,h5,h6,p,a,select,option,input,form,button,img,table,label,textarea,video');
-{h1:'titre de niveau 1',h2:'titre de niveau 2',h3:'titre de niveau 3',h4:'titre de niveau 4',h5:'titre de niveau 5',h6:'titre de niveau 6',p:'paragraphe',a:'lien',select:'liste de choix',option:'choix',input:'champs de saisie',form:'formulaire',button:'bouton',img:'image',table:'tableau',label:'libellé',textarea:'zone de saisie',video:'vidéo';}
+
+/*balises html*/
+
+{h1:'titre1',
+h2:'titre2',
+h3:'titre3',
+h4:'titre4',
+h5:'titre5',
+h6:'titre6',
+p:'paragraphe',
+a:'lien',
+select:'liste_choix',
+option:'choix',
+input:'champs',
+form:'formulaire',
+button:'bouton',
+img:'image',
+table:'tableau',
+label:'libelle',
+textarea:'zone_saisie',
+video:'video';}
+
+/*interface par defaut*/
+
+button_prev:'precedent';
+omnibar:'barre_recherche';
+button_submit:'rechercher';
+button_next:'suivant';
+button_close:'fermer';
+button_zoomIn:'zoom';
+button_zoomOut:'dezoom';
+button_color:'apparence';
+button_speechRecognition:'commande_vocale';
+button_volume:'volume';
+button_choixVoix:'choix_voix';
+button_homer:'voix';
+button_julie:'voix';
+button_murphy:'voix';
+
+/*liste des events (certains click)*/
+
+erreur de recherche:'adresse_non-reconnue';
+click_button_close:'a_bientot';
+ouverture du logiciel:'bienvenu';
+click_button_submit:'recherche';
+on loading:'chargement';
+favorite_list:'liste_favoris';
+
+
+
+
+
