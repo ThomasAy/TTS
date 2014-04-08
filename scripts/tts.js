@@ -291,9 +291,20 @@ Player.prototype.verifArray = function() {
 Player.prototype.play = function() {
     var directory = 'assets/audio/'+voice+'/',
         objectPlayer = this;
+    this.player.addEventListener('ended', function() {
+        objectPlayer.boucle++;
+        if(objectPlayer.boucle < objectPlayer.array.length) {
+            objectPlayer.player = new Audio(directory+MD5(objectPlayer.array[objectPlayer.boucle])+'.mp3');
+            objectPlayer.player.pause();
+            objectPlayer.player.load();
+            objectPlayer.player.play();
+        }
+    });
+    this.player.src = directory+MD5(this.array[this.boucle])+'.mp3';
+    this.player.play();
+        /*
     if(this.boucle < this.array.length) {
-        this.player.src = directory+MD5(this.array[this.boucle])+'.mp3';
-        this.player.play();
+        
     }
     if(this.boucle === 0) {
         this.player.addEventListener('ended', function(event) {
@@ -304,7 +315,7 @@ Player.prototype.play = function() {
                 objectPlayer.player.play();
             }
         });
-    }
+    }*/
 };
 
 document.addEventListener('keydown',function(){
