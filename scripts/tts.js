@@ -238,23 +238,31 @@ function speak(mot) {
         var request =   http.get('http://voxygen.fr/sites/all/modules/voxygen_voices/assets/proxy/index.php?method=redirect&voice='+voice+'&ts=1393856393019&text='+sVar1, function(response) {
                             http.get(response.headers.location, function(res) {
                                 res.pipe(file);
+                                return true;
                             });
                         });
     }
     else {
-        
+        return true;
     }
 }
 function read(phrase) {
     var directory = 'assets/audio/'+voice+'/',
-        reg = new RegExp("[?\.!]", "g");
+        reg = new RegExp("[?\.!]", "g"),
         temp = phrase.split(reg),
         player = new Audio(),
-        count = 0;
+        count = 0,
+        length = temp.length,
+        tableau = new Array(),
+        fini = false,
+        bool = false;
     for (var key in temp){
-        speak(temp[key]);
+        bool = speak(temp[key]);
+        tableau[key] = bool;
     }
 
+    while(tableau.length !== temp.length) {}
+    
     player.src = directory+MD5(temp[count])+'.mp3';
     player.play();
     player.addEventListener('ended',function(){
