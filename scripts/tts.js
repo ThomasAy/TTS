@@ -223,59 +223,89 @@ var MD5 = function (string) {
  
     return temp.toLowerCase();
 }
-function speak(mot) {
-    var querystring = require('querystring');
-    var http = require('http');
-    var fs = require('fs'),
+
+function read(phrase) {
+    var reg = new RegExp("[?\.!]", "g"),
+        tab = phrase.split(reg),
+        temp = new Array(), 
+        player = new Player(temp),
+        boucle = 0;
+    for(boucle = 0; boucle < tab.length; boucle++) {
+        if(tab[boucle].length > 0) {
+            temp.push(tab[boucle]);
+        }
+    }
+    player.download();
+}
+function Player(tableau) {
+    this.array = tableau;
+    this.player = new Audio();
+    this.boucle = 0;
+    this.downloadedArray = new Array();
+    for (var key in this.array){
+        this.downloadedArray[key] = false;
+    }
+};
+Player.prototype.download = function() {
+    var querystring = require('querystring'),
+        http = require('http'),
+        fs = require('fs'),
         http = require('http'), 
-        fichier = MD5(mot)+'.mp3',
+        fichier,
         directory = 'assets/audio/'+voice+'/',
-        sVar1;
-    if (!fs.existsSync(directory+fichier)) {
-        sVar1 = encodeURIComponent(mot);
-        //options to use
-        var file = fs.createWriteStream(directory+fichier);
-        var request =   http.get('http://voxygen.fr/sites/all/modules/voxygen_voices/assets/proxy/index.php?method=redirect&voice='+voice+'&ts=1393856393019&text='+sVar1, function(response) {
-                            http.get(response.headers.location, function(res) {
-                                res.pipe(file);
-                                return true;
-                            });
-                        });
+        sVar1,
+        file,
+        key = 0;
+    for(key = 0; key < this.array.length; key++) {
+        fichier = MD5(this.array[key])+'.mp3';
+        if (!fs.existsSync(directory+fichier)) {
+            sVar1 = encodeURIComponent(this.array[key]);
+            file = fs.createWriteStream(directory+fichier);
+            http.get('http://voxygen.fr/sites/all/modules/voxygen_voices/assets/proxy/index.php?method=redirect&voice='+voice+'&ts=1393856393019&text='+sVar1, function(response) {
+                http.get(response.headers.location, function(res) {
+                    res.pipe(file);
+                    this.downloadedArray[key] = true;
+                    this.verifArray();
+                });
+            });
+        }
+        else {
+            this.downloadedArray[key] = true;
+            this.verifArray();
+        }
+    }
+};
+
+Player.prototype.verifArray = function() {
+    var bool = true,
+        boucle = 0;
+    for(boucle=0; boucle < this.array.length; boucle++) {
+        if(this.downloadedArray[boucle] !== true) {
+            bool = false;
+        }
+    }
+    if(bool) {
+        this.play();
+    }
+};
+
+Player.prototype.play = function() {
+    var directory = 'assets/audio/'+voice+'/';
+    if(this.boucle < this.array.length) {
+        console.log(this.array[this.boucle]);
+        this.player.src = directory+MD5(this.array[this.boucle])+'.mp3';
+        this.player.play();
+    }
+    if(this.boucle === 0) {
+        this.boucle++;
+        this.player.addEventListener('ended',this.play());
     }
     else {
-        return true;
+        this.boucle++;
     }
-}
-function read(phrase) {
-    var directory = 'assets/audio/'+voice+'/',
-        reg = new RegExp("[?\.!]", "g"),
-        temp = phrase.split(reg),
-        player = new Audio(),
-        count = 0,
-        length = temp.length,
-        tableau = new Array(),
-        fini = false,
-        bool = false;
-    for (var key in temp){
-        bool = speak(temp[key]);
-        tableau[key] = bool;
-    }
+};
 
-    while(tableau.length !== temp.length) {}
-    
-    player.src = directory+MD5(temp[count])+'.mp3';
-    player.play();
-    player.addEventListener('ended',function(){
-        count++;
-        if(typeof(temp[count]) !== 'undefined') {      
-            player.src = directory+MD5(temp[count])+'.mp3';
-            player.pause();
-            player.load();
-            player.play();
-        }
-    });
-}
-document.addEventListener('keypress',function(){
+document.addEventListener('keydown',function(){
     var player = new Audio('assets/audio/'+voice+'/char/'+event.keyCode+'.mp3');
     player.play();
 });
