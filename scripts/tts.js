@@ -255,19 +255,20 @@ Player.prototype.download = function() {
         directory = 'assets/audio/'+voice+'/',
         sVar1,
         file,
-        key = 0;
+        key = 0,
+        objectPlayer = this;
     for(key = 0; key < this.array.length; key++) {
         fichier = MD5(this.array[key])+'.mp3';
         if (!fs.existsSync(directory+fichier)) {
             sVar1 = encodeURIComponent(this.array[key]);
             file = fs.createWriteStream(directory+fichier);
-            http.get('http://voxygen.fr/sites/all/modules/voxygen_voices/assets/proxy/index.php?method=redirect&voice='+voice+'&ts=1393856393019&text='+sVar1, function(response) {
-                http.get(response.headers.location, function(res) {
-                    res.pipe(file);
-                    this.downloadedArray[key] = true;
-                    this.verifArray();
-                });
-            });
+            var request =   http.get('http://voxygen.fr/sites/all/modules/voxygen_voices/assets/proxy/index.php?method=redirect&voice='+voice+'&ts=1393856393019&text='+sVar1, function(response) {
+                                http.get(response.headers.location, function(res) {
+                                    res.pipe(file);
+                                    objectPlayer.downloadedArray[key-1] = true;
+                                    objectPlayer.verifArray();
+                                });
+                            });
         }
         else {
             this.downloadedArray[key] = true;
@@ -292,31 +293,15 @@ Player.prototype.play = function() {
     var directory = 'assets/audio/'+voice+'/',
         objectPlayer = this;
     this.player.addEventListener('ended', function() {
-        var test = new Audio('assets/audio/Homer40min/char/100.mp3');
-        test.play();
-        /*objectPlayer.boucle++;
+        objectPlayer.boucle++;
         if(objectPlayer.boucle < objectPlayer.array.length) {
             console.log(objectPlayer.array[objectPlayer.boucle]);
             objectPlayer.player = new Audio(directory+MD5(objectPlayer.array[objectPlayer.boucle])+'.mp3');
             objectPlayer.player.play();
-        }*/
+        }
     });
     this.player.src = directory+MD5(this.array[this.boucle])+'.mp3';
     this.player.play();
-        /*
-    if(this.boucle < this.array.length) {
-        
-    }
-    if(this.boucle === 0) {
-        this.player.addEventListener('ended', function(event) {
-            objectPlayer.boucle++;
-            if(objectPlayer.boucle < objectPlayer.array.length) {
-                objectPlayer.player = new Audio(directory+MD5(objectPlayer.array[objectPlayer.boucle])+'.mp3');
-                objectPlayer.player.load();
-                objectPlayer.player.play();
-            }
-        });
-    }*/
 };
 
 document.addEventListener('keydown',function(){
