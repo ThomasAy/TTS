@@ -236,7 +236,7 @@ function read(phrase) {
         }
     }
     player = new Player(temp);
-    player.download();
+    player.download(0);
 }
 function Player(tableau) {
     this.array = tableau;
@@ -247,35 +247,73 @@ function Player(tableau) {
         this.downloadedArray[key] = false;
     }
 };
-Player.prototype.download = function() {
-    var querystring = require('querystring'),
-        http = require('http'),
+Player.prototype.download = function(key) {
+    var http = require('http'),
         fs = require('fs'),
         http = require('http'), 
         fichier,
         directory = 'assets/audio/'+voice+'/',
         sVar1,
-        key = 0,
-        objectPlayer = this;
-    for(key = 0; key < this.array.length; key++) {
+        objectPlayer = this,
+        file = new Array();
+    if(key < this.array.length) {
+        console.log(key);
         fichier = MD5(this.array[key])+'.mp3';
-        var file = null;
+        
+        if (!fs.existsSync(directory+fichier)) {
+            file[key] = fs.createWriteStream(directory+fichier);
+            sVar1 = encodeURIComponent(this.array[key]);
+            http.get('http://voxygen.fr/sites/all/modules/voxygen_voices/assets/proxy/index.php?method=redirect&voice='+voice+'&ts=1393856393019&text='+sVar1, function(response) {
+                http.get(response.headers.location, function(res) {
+                    res.pipe(file[key]);
+                    objectPlayer.downloadedArray[key] = true;
+                    objectPlayer.verifArray();
+                    objectPlayer.download(key+1);
+                });
+                
+            });
+        }
+        else {
+            this.download(key+1);
+        }
+            /*sVar1 = encodeURIComponent(this.array[key]);
+            http.get('http://voxygen.fr/sites/all/modules/voxygen_voices/assets/proxy/index.php?method=redirect&voice='+voice+'&ts=1393856393019&text='+sVar1, function(response) {
+                http.get(response.headers.location, function(res) {
+                    //file[key] = fs.createWriteStream(directory+fichier);
+                    //res.pipe(file[key]);
+                    //objectPlayer.downloadedArray[key] = true;
+                    //objectPlayer.verifArray();
+                    this.download(key+1);
+                });
+            });
+        }
+        else {
+            this.downloadedArray[key] = true;
+            this.verifArray();
+            this.download(key+1);
+        }*/
+    }
+    
+    
+    
+    /*for(key = 0; key < this.array.length; key++) {
+        
         if (!fs.existsSync(directory+fichier)) {
             sVar1 = encodeURIComponent(this.array[key]);
-            file = fs.createWriteStream(directory+fichier);
-            var request =   http.get('http://voxygen.fr/sites/all/modules/voxygen_voices/assets/proxy/index.php?method=redirect&voice='+voice+'&ts=1393856393019&text='+sVar1, function(response) {
-                            http.get(response.headers.location, function(res) {
-                                res.pipe(file);
-                                objectPlayer.downloadedArray[key-1] = true;
-                                objectPlayer.verifArray();
-                            });
-                        });
+            http.get('http://voxygen.fr/sites/all/modules/voxygen_voices/assets/proxy/index.php?method=redirect&voice='+voice+'&ts=1393856393019&text='+sVar1, function(response) {
+                http.get(response.headers.location, function(res) {
+                    file[key] = fs.createWriteStream(directory+fichier);
+                    res.pipe(file[key]);
+                    objectPlayer.downloadedArray[key-1] = true;
+                    objectPlayer.verifArray();
+                });
+            });
         }
         else {
             this.downloadedArray[key] = true;
             this.verifArray();
         }
-    }
+    }*/
 };
 
 Player.prototype.verifArray = function() {
