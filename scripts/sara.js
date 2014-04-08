@@ -9,14 +9,14 @@ Sara.prototype.focusOnOmnibar = function() {
 
 Sara.prototype.focusOnNextElement = function() {
 	console.log(document.activeElement);
-	document.activeElement().nextSibling().focus();
+	document.activeElement.nextSibling.focus();
 	console.log(document.activeElement);
     return false;
 };
 
 Sara.prototype.focusOnPreviousElement = function() {
 	console.log(document.activeElement);
-	document.activeElement().previousSibling().focus();
+	document.activeElement.previousSibling.focus();
 	console.log(document.activeElement);
     return false;
 };
