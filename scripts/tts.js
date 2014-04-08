@@ -293,18 +293,20 @@ Player.prototype.verifArray = function() {
     }
 };
 Player.prototype.play = function() {
-    var directory = 'assets/audio/'+voice+'/';
+    var directory = 'assets/audio/'+voice+'/',
+        objectPlayer = this;
     if(this.boucle < this.array.length) {
-        console.log(this.array[this.boucle]);
         this.player.src = directory+MD5(this.array[this.boucle])+'.mp3';
-        //this.player.play();
+        this.player.play();
     }
     if(this.boucle === 0) {
-        this.boucle++;
-        this.player.addEventListener('ended',this.play());
-    }
-    else {
-        this.boucle++;
+        this.player.addEventListener('ended', function(event) {
+            objectPlayer.boucle++;
+            if(objectPlayer.boucle < objectPlayer.array.length) {
+                this.src = directory+MD5(objectPlayer.array[objectPlayer.boucle])+'.mp3';
+                this.play();
+            }
+        });
     }
 };
 
