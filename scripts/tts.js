@@ -288,17 +288,17 @@ Player.prototype.verifArray = function() {
         this.play();
     }
 };
-
+var aud = new Audio();
 Player.prototype.play = function() {
     var directory = 'assets/audio/'+voice+'/';
     if(this.boucle < this.array.length) {
         console.log(this.array[this.boucle]);
-        this.player.src = directory+MD5(this.array[this.boucle])+'.mp3';
-        this.player.play();
+        aud.src = directory+MD5(this.array[this.boucle])+'.mp3';
+        aud.play();
     }
     if(this.boucle === 0) {
         this.boucle++;
-        this.player.addEventListener('ended',this.play());
+        aud.addEventListener('ended',this.play());
     }
     else {
         this.boucle++;
