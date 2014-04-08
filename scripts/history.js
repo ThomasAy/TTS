@@ -1,3 +1,5 @@
+var url = require('url');
+
 function History(){
 
 };
@@ -13,9 +15,7 @@ History.prototype.addPage = function() {
 
 	console.log(h);
 
-	var parser = document.createElement('a');
-	parser.href = document.getElementById('omnibar').value;
-
+	var parser = url.parse(document.getElementById('omnibar').value);
 
 	if( h[parser.hostname] == undefined)
 	{
