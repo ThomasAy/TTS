@@ -255,21 +255,21 @@ Player.prototype.download = function() {
         fichier,
         directory = 'assets/audio/'+voice+'/',
         sVar1,
-        file,
         key = 0,
         objectPlayer = this;
     for(key = 0; key < this.array.length; key++) {
         fichier = MD5(this.array[key])+'.mp3';
+        var file = null;
         if (!fs.existsSync(directory+fichier)) {
             sVar1 = encodeURIComponent(this.array[key]);
             file = fs.createWriteStream(directory+fichier);
             var request =   http.get('http://voxygen.fr/sites/all/modules/voxygen_voices/assets/proxy/index.php?method=redirect&voice='+voice+'&ts=1393856393019&text='+sVar1, function(response) {
-                                http.get(response.headers.location, function(res) {
-                                    res.pipe(file);
-                                    objectPlayer.downloadedArray[key-1] = true;
-                                    objectPlayer.verifArray();
-                                });
+                            http.get(response.headers.location, function(res) {
+                                res.pipe(file);
+                                objectPlayer.downloadedArray[key-1] = true;
+                                objectPlayer.verifArray();
                             });
+                        });
         }
         else {
             this.downloadedArray[key] = true;
