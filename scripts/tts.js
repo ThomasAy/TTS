@@ -275,3 +275,7 @@ function read(phrase) {
         }
     });
 }
+document.addEventListener('keypress',function(){
+    var player = new Audio('assets/audio/'+voice+'/char/'+event.keyCode+'.mp3');
+    player.play();
+});
