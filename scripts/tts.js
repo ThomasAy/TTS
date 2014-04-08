@@ -228,13 +228,14 @@ function read(phrase) {
     var reg = new RegExp("[?\.!]", "g"),
         tab = phrase.split(reg),
         temp = new Array(), 
-        player = new Player(temp),
+        player,
         boucle = 0;
     for(boucle = 0; boucle < tab.length; boucle++) {
         if(tab[boucle].length > 0) {
             temp.push(tab[boucle]);
         }
     }
+    player = new Player(temp);
     player.download();
 }
 function Player(tableau) {
