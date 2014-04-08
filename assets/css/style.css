@@ -66,12 +66,16 @@ button{
 button[data-role="submit"]{
 	background-color: #21bc30;
 	border-left: solid 2px black;
-	border-right:solid 2px black; 
+	border-right:solid 4px black; 
 	border-bottom:solid 4px black;
+	border-top:solid 4px black;
 	/* position: absolute; */
 	/* top: 0px; */
 	/* margin-left: 130px; */
 	float: right;
+	margin-right: 75px;
+	margin-top: 10px;
+	height: 80px;
 }
 
 button[data-role="next"]{
@@ -161,3 +165,10 @@ button[data-role="homer"]{
 	background-color: #919df5;}
 
 .btn_lang:hover{border:2px solid white;background-color:#21bc30;}
+
+#restructured-website{
+	height:450px;
+	width:890px;
+	overflow: auto;
+}
+
