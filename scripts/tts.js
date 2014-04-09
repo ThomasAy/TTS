@@ -224,16 +224,19 @@ var MD5 = function (string) {
     return temp.toLowerCase();
 };
 
+var player = null;
 function read(phrase) {
     var reg = new RegExp("[?\.!]", "g"),
         tab = phrase.split(reg),
-        temp = new Array(), 
-        player,
+        temp = new Array(),
         boucle = 0;
     for(boucle = 0; boucle < tab.length; boucle++) {
         if(tab[boucle].length > 0) {
             temp.push(tab[boucle]);
         }
+    }
+    if(player !== null) {
+        player.player.pause();
     }
     player = new Player(temp);
     player.download(0);
