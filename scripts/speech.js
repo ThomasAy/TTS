@@ -4,7 +4,9 @@ var exec = require('child_process').exec;
 var WaveRecorder = require('wave-recorder');
 
 function Speech(options){
-	this.speechFilePath = 'assets/audio/tmp/speech.wav';
+	var baseSpeechFilePath = 'assets/audio/tmp/speech';
+	this.wavFilePath = baseSpeechFilePath + '.wav';
+	this.flacFilePath = baseSpeechFilePath + '.flac';
 	this.result = '';
 }
 
@@ -18,12 +20,12 @@ Speech.prototype.start = function() {
 	    self.recorder = WaveRecorder(audio_context);
 	    input.connect(self.recorder.input);
 
-		var fileStream = fs.createWriteStream(self.speechFilePath);
+		var fileStream = fs.createWriteStream(self.wavFilePath);
 	  	self.recorder.pipe(fileStream);
 
 	    self.recorder.on('header', function(header){ 
 		    fileStream.on('close', function(){
-		      var headerStream = fs.createWriteStream(self.speechFilePath, {flags: 'r+', start:0})
+		      var headerStream = fs.createWriteStream(self.wavFilePath, {flags: 'r+', start:0})
 		      headerStream.write(header)
 		      headerStream.end()
 		    })
@@ -43,7 +45,7 @@ Speech.prototype.stop = function() {
 Speech.prototype.recognize = function() {
 	var self = this;
 
-	exec('flac -f '+ this.speechFilePath,
+	exec('flac -f '+ this.wavFilePath,
 	  function (error, stdout, stderr) {
 	    if (error !== null) 
 	    {
@@ -51,11 +53,15 @@ Speech.prototype.recognize = function() {
 	    }
 	    else
 	    {
-	    	fs.readFile(self.speechFilePath, function (err, data) {
-  			if (err) return callback(err);
+	    	fs.readFile(self.flacFilePath, function (err, data) {
+  			if (err) {
+  				console.log('erreur :');
+  				console.log(err)
+  				return;
+  			};
 				var options = {
 				  hostname: 'www.google.com',
-				  path: '/speech-api/v1/recognize?xjerr=1&client=chromium&maxresults=1&lang=en-EN',
+				  path: '/speech-api/v1/recognize?xjerr=1&client=chromium&maxresults=1&lang=fr-FR',
 				  method: 'POST',
 				  headers: {
 				    'Content-type': 'audio/x-flac; rate=16000'
