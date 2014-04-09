@@ -328,6 +328,7 @@ Player.prototype.play = function() {
 };
 
 document.addEventListener('keydown',function(){
+    console.log(event.keyCode);
     var player = new Audio('assets/audio/'+voice+'/char/'+event.keyCode+'.mp3');
     player.play();
 });
