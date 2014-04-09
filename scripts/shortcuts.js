@@ -1,8 +1,8 @@
-Mousetrap.bind(['command+shift', 'ctrl+shift'], function(e) {
+Mousetrap.bind(['command+shift', 'ctrl+shift', 'enter'], function(e) {
     document.getElementById('omnibar').focus();
-    return false;
+    return playUtil('barre_recherche');
 });
 
 Mousetrap.bind(['ctrl+j', 'command+j'], function(e) {
-    nextVoice();
+    return nextVoice();
 });

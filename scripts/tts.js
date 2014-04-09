@@ -5,7 +5,7 @@ var voices =    [
                 ];
 //Initialisation de la voix du personnage
 var settings = localStorage.getItem('settings');
-if(settings === null || true === true) {
+if(settings === null) {
     settings = {voice: 'Murphy'};
     localStorage.setItem('settings', JSON.stringify(settings));
 }
@@ -333,6 +333,5 @@ document.addEventListener('keydown',function() {
 //Paramètre : (String)url
 function playUtil(url) {
     var player = new Audio('assets/audio/'+voice+'/util/'+url+'.mp3');
-    console.log('assets/audio/'+voice+'/util/'+url+'.mp3');
     player.play();
 }
