@@ -1,6 +1,11 @@
+var voices =    [
+                    'Murphy',
+                    'Julie',
+                    'Homer40min'
+                ];
 //Initialisation de la voix du personnage
 var settings = localStorage.getItem('settings');
-if(settings === null) {
+if(settings === null || true === true) {
     settings = {voice: 'Murphy'};
     localStorage.setItem('settings', JSON.stringify(settings));
 }
@@ -10,11 +15,21 @@ else {
 var voice = settings.voice;
 //Permet de changer la voix de l'application
 //Paramètre : (String)voice
-function changeVoice(voice) {
-    settings.voice = voice;
+function changeVoice(newVoice) {
+    settings.voice = newVoice;
+    voice = newVoice;
     localStorage.setItem('settings', JSON.stringify(settings));
 }
-
+//Permet de passer à la voix suivante
+//Paramètre : aucun
+function nextVoice() {
+    var index = voices.indexOf(voice);
+    if(typeof(voices[index+1]) === 'undefined') {
+        index = -1;
+    }
+    changeVoice(voices[index+1]);
+    playUtil('voix');
+}
 
 /**
 *
@@ -282,27 +297,6 @@ Player.prototype.download = function(key) {
             this.download(key+1);
         }
     }
-    
-    
-    
-    /*for(key = 0; key < this.array.length; key++) {
-        
-        if (!fs.existsSync(directory+fichier)) {
-            sVar1 = encodeURIComponent(this.array[key]);
-            http.get('http://voxygen.fr/sites/all/modules/voxygen_voices/assets/proxy/index.php?method=redirect&voice='+voice+'&ts=1393856393019&text='+sVar1, function(response) {
-                http.get(response.headers.location, function(res) {
-                    file[key] = fs.createWriteStream(directory+fichier);
-                    res.pipe(file[key]);
-                    objectPlayer.downloadedArray[key-1] = true;
-                    objectPlayer.verifArray();
-                });
-            });
-        }
-        else {
-            this.downloadedArray[key] = true;
-            this.verifArray();
-        }
-    }*/
 };
 
 Player.prototype.verifArray = function() {
@@ -330,8 +324,15 @@ Player.prototype.play = function() {
     }
 };
 
-document.addEventListener('keydown',function(){
-    console.log(event.keyCode);
+document.addEventListener('keydown',function() {
     var player = new Audio('assets/audio/'+voice+'/char/'+event.keyCode+'.mp3');
     player.play();
 });
+
+//Permet de lire un fichier util
+//Paramètre : (String)url
+function playUtil(url) {
+    var player = new Audio('assets/audio/'+voice+'/util/'+url+'.mp3');
+    console.log('assets/audio/'+voice+'/util/'+url+'.mp3');
+    player.play();
+}
