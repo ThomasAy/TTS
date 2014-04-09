@@ -31,7 +31,6 @@ History.prototype.addPage = function() {
 	
 };
 
-
 History.prototype.getObject = function() {
     var value = localStorage.getItem("history");
     return value && JSON.parse(value);
