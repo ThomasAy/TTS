@@ -1,24 +1,36 @@
-function Sara(){};
+function Sara(){
+	NodeList.prototype.search = Array.prototype.indexOf;
+	this.nodeLists = {
+		menu : document.querySelectorAll('#omnibar, button[data-role]'),
+		page : null
+	};
+	this.nodeListSelected = 'menu';
+	this.elementFocus = 0;
+};
+
+Sara.prototype.focus = function(el) {
+	el.focus();
+	this.elementFocus = this.nodeLists[this.nodeListSelected].search(el);
+};
 
 Sara.prototype.focusOnOmnibar = function() {
-	console.log(document.activeElement);
 	document.getElementById('omnibar').focus();
-	console.log(document.activeElement);
-    return false;
 };
 
-Sara.prototype.focusOnNextElement = function() {
-	console.log(document.activeElement);
-	document.activeElement.nextSibling.focus();
-	console.log(document.activeElement);
-    return false;
+Sara.prototype.nextElement = function() {
+	var index = this.elementFocus == this.nodeLists[this.nodeListSelected].length - 1 ? 0 : ++this.elementFocus;
+	console.log(index);
+	console.log(this.nodeLists[this.nodeListSelected].item(index).nodeName.toLowerCase());
+	console.log(this.nodeLists[this.nodeListSelected].item(index));
+	this.focus(this.nodeLists[this.nodeListSelected].item(index));
 };
 
-Sara.prototype.focusOnPreviousElement = function() {
-	console.log(document.activeElement);
-	document.activeElement.previousSibling.focus();
-	console.log(document.activeElement);
-    return false;
+Sara.prototype.previousElement = function() {
+	var index = this.elementFocus == 0 ? this.nodeLists[this.nodeListSelected].length - 1 : --this.elementFocus;
+	console.log(index);
+	console.log(this.nodeLists[this.nodeListSelected].item(index).nodeName.toLowerCase());
+	console.log(this.nodeLists[this.nodeListSelected].item(index));
+	this.focus(this.nodeLists[this.nodeListSelected].item(index));
 };
 
 Sara.prototype.browserNextPage = function() {
