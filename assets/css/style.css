@@ -5,6 +5,7 @@ body{
 	height: 100%;
 	margin: 0px;
 
+
 }
 
 html{overflow:hidden} 
@@ -169,8 +170,8 @@ button[data-role="homer"]{
 .btn_lang:hover{border:2px solid white;background-color:#21bc30;}
 
 #restructured-website{
-	height:450px;
-	width:890px;
+	height: -webkit-calc(100% - 100px);
+	width: -webkit-calc(100% - 100px);
 	overflow: auto;
 }
 
@@ -217,7 +218,6 @@ button[data-role="homer"]{
 
 #mask
 {
-
 	z-index: 2;
 	position: absolute;
 	top: 100px;
@@ -226,6 +226,7 @@ button[data-role="homer"]{
 }
 
 #real-website {
+	display: none;
 	position: absolute;
 	top: 100px;
 	height: -webkit-calc(100% - 100px);
