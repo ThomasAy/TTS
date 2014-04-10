@@ -172,3 +172,60 @@ button[data-role="homer"]{
 	overflow: auto;
 }
 
+#bookmark{
+	font-size: 200%;
+	visibility: hidden;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-color: #888888;
+	z-index: 4;
+	margin: -8px;
+}
+
+button[data-role="closeBookmark"]{
+	position: absolute;
+	background-color: #b40003;
+	top: 0px;
+	right: 0px;
+}
+
+button[data-role="addBookmark"]{
+	background-color: #b40003;
+	
+}
+
+button[data-role="removeBookmark"]{
+	background-color: #b40003;
+}
+
+
+#bookmarkHeader{
+	width: 100%;
+	height: 100px;
+}
+
+#bookmark h1
+{
+	text-align: center;
+}
+
+#bookmark select
+{
+	font-size: 200%;
+	width: 50%;
+	height: 50%;
+	margin-left: 25%;
+	background-color: #888888;
+}
+
+
+#bookmark option:nth-child(odd) { background: red; }
+
+#bookmark option:nth-child(even) { background: green; }
+
+
+
+
+
+

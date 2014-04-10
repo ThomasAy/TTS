@@ -15,6 +15,20 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body onload="retaille()">
+  <div id="bookmark">
+      <div id="bookmarkHeader">
+          <h1>Favoris</h1>    
+      </div>
+      <select name="toppings" id="toppings" multiple="multiple">
+        
+      </select>
+      <button data-role="closeBookmark"><img class="icon" src="assets/icon/SVG/x.svg"></button>
+
+      <!-- BOUTONS D'AJOUT SUPPRESSION
+      <button data-role="addBookmark"><img class="icon" src="assets/icon/SVG/plus.svg"></button>
+      <button data-role="removeBookmark"><img class="icon" src="assets/icon/SVG/minus.svg"></button>
+      -->
+    </div>
     <header>
         <button data-role="prev"><img class="icon" src="assets/icon/SVG/arrow-left.svg"></button>
         <section id="navbar">
@@ -37,6 +51,10 @@
       <button data-role="speechRecognition"><img class="icon" src="assets/icon/SVG/microphone.svg"></button>
       <button data-role="volume"><img class="icon" src="assets/icon/SVG/volume-high.svg"></button>
     </aside>
+
+
+
+
   <script type="text/javascript" src="vendor/mousetrap.min.js"></script>
   <script type="text/javascript" src="scripts/speech.js"></script>
   <script type="text/javascript" src="scripts/commands.js"></script>

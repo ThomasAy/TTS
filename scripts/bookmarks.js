@@ -1,6 +1,10 @@
 var url = require('url');
 
 function Bookmarks(){
+	document.querySelector('button[data-role=closeBookmark]').onclick = function(){
+	var el = document.getElementById('bookmark');
+	el.style.visibility = 'hidden';
+	};
 
 };
 
@@ -29,21 +33,36 @@ Bookmarks.prototype.addPageToBookMark = function() {
 
 Bookmarks.prototype.getObject = function() {
     var value = localStorage.getItem("bookmarks");
-    return value && JSON.parse(value);
+    return JSON.parse(value);
 }
 
 Bookmarks.prototype.openFav = function() {
 	var el = document.getElementById('bookmark');
 	el.style.visibility = 'visible';
 
+	var b = new Bookmarks();
+	var obj = b.getObject();
+
+	var x = document.getElementById("toppings");
+	while (x.length > 0)
+	{
+	  x.remove(x.length-1);
+	} 
+
+	for(key in obj){
+		var x = document.getElementById("toppings");
+		var option = document.createElement("option");
+		option.text = key;
+		option.value = obj[key];
+		x.add(option);
+	}
+
+	document.getElementById('toppings').ondblclick = function(){
+		window.location = this.options[this.selectedIndex].value;
+		var el = document.getElementById('bookmark');
+		el.style.visibility = 'hidden';
+	};
 
 };
 
-document.addEventListener('keyup',function() {
-    if(event.keyCode == 80);
-	{
-		var b = new Bookmarks();
-		b.openFav();
-	}
-    
-});
+

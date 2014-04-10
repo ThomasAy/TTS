@@ -7,6 +7,10 @@ Mousetrap.bind(['ctrl+j', 'command+j'], function(e) {
     return nextVoice();
 });
 
+Mousetrap.bind(['ctrl+shift+d', 'command+shift+d'], function(e) {
+    var b = new Bookmarks();
+		b.openFav();
+});
 Mousetrap.bind(['tab'], function(e) {
     sara.nextElement();
 });
