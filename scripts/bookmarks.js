@@ -58,7 +58,7 @@ Bookmarks.prototype.openFav = function() {
 	}
 
 	document.getElementById('toppings').ondblclick = function(){
-		window.location = this.options[this.selectedIndex].value;
+		sara.loadPage(this.options[this.selectedIndex].value);
 		var el = document.getElementById('bookmark');
 		el.style.visibility = 'hidden';
 	};
