@@ -58,13 +58,3 @@ var OS_ANDROID = true;
 
 commander.test('search *toto et *tata');
 commander.test('aller (a) :toto en passant par :tata');
-
-if ('webkitSpeechRecognition' in window) {
-	var recognition = new webkitSpeechRecognition();
-	recognition.lang = 'fr-FR';
-	recognition.continuous = false;
-	recognition.interimResult = false;
-	recognition.onresult = function(e){
-		console.log(e);
-	};
-};
