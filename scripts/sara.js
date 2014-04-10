@@ -19,6 +19,7 @@ Sara.prototype.focus = function(el) {
 
 Sara.prototype.focusOnOmnibar = function() {
 	this.focus(document.getElementById('omnibar'));
+	this.nodeListSelected = 'menu';
 };
 
 
@@ -30,6 +31,7 @@ Sara.prototype.nextElement = function() {
 	var index = this.elementFocus == this.nodeLists[this.nodeListSelected].length - 1 ? 0 : ++this.elementFocus;
 	var el = this.nodeLists[this.nodeListSelected].item(index);
 	this.focus(el);
+	console.log('next element');
 	this.readElement(el);
 };
 
