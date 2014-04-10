@@ -102,7 +102,18 @@ Sara.prototype.readElement = function(el) {
 Sara.prototype.changeNodeList = function() {
 	if (arguments.length == 1)
 	{
-
+		this.nodeListSelected = this.arguments[0];
+	}
+	else
+	{
+		if (this.nodeListSelected == 'menu')
+		{
+			this.nodeListSelected = 'page';
+		}
+		else
+		{
+			this.nodeListSelected = 'menu';
+		}
 	}
 };
 

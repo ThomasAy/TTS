@@ -32,6 +32,6 @@ Mousetrap.bind(['shift+tab'], function(e) {
 });
 
 
-Mousetrap.bind(['command+shift', 'ctrl+shift'], function(e) {
+Mousetrap.bind(['command+shift+c', 'ctrl+shift+c'], function(e) {
     sara.changeNodeList()
 });

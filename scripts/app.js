@@ -14,7 +14,6 @@ function omnibar_submit(e)
 	{
 		e.preventDefault();
 		var command = document.getElementById('omnibar').value;
-		console.log('working...');
 		document.getElementById('real-website').src = command;
 	}
 }
@@ -28,7 +27,7 @@ function omnibar_focused(e)
 document.getElementById('real-website').onload = function(e)
 {	
 	html = document.getElementById('real-website').contentDocument;
-	document.getElementById('restructured-website').innerHTML = html.body.textContent;
+	document.getElementById('restructured-website').innerHTML = html.body.innerHTML;
 	sara.nodeListSelected = 'page';
 	sara.nodeLists.page = document.getElementById('restructured-website').querySelectorAll('h1,h2,h3,h4,h5,h6,p,a,input,button,img,table,label,textarea');
 }
