@@ -3,6 +3,8 @@ body{
 	min-height: 675px;
 	width: 100%;
 	height: 100%;
+	margin: 0px;
+
 }
 
 html{overflow:hidden} 
@@ -180,7 +182,6 @@ button[data-role="homer"]{
 	position: absolute;
 	background-color: #888888;
 	z-index: 4;
-	margin: -8px;
 }
 
 #closeBouton{
@@ -213,6 +214,22 @@ button[data-role="homer"]{
 #bookmark option:nth-child(odd) { background: red; }
 
 #bookmark option:nth-child(even) { background: green; }
+
+#mask
+{
+	z-index: 2;
+	position: absolute;
+	top: 0px;
+	height: 100%;
+	width: 100%;
+}
+
+#real-website {
+	position: absolute;
+	top: 100px;
+	height: -webkit-calc(100% - 100px);
+	width: -webkit-calc(100% - 100px);
+}
 
 
 
