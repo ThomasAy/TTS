@@ -12,10 +12,22 @@ Mousetrap.bind(['ctrl+shift+d', 'command+shift+d'], function(e) {
 		b.openFav();
 });
 Mousetrap.bind(['tab'], function(e) {
+	if (e.preventDefault) {
+        e.preventDefault();
+    } else {
+        // internet explorer
+        e.returnValue = false;
+    }
     sara.nextElement();
 });
 
 Mousetrap.bind(['shift+tab'], function(e) {
+	if (e.preventDefault) {
+        e.preventDefault();
+    } else {
+        // internet explorer
+        e.returnValue = false;
+    }
     sara.previousElement();
 });
 
