@@ -1,6 +1,6 @@
 body{
 	min-width: 1017px;
-	min-height: 675px;
+	min-height: 600px;
 	width: 100%;
 	height: 100%;
 	margin: 0px;
@@ -217,11 +217,12 @@ button[data-role="homer"]{
 
 #mask
 {
+
 	z-index: 2;
 	position: absolute;
-	top: 0px;
-	height: 100%;
-	width: 100%;
+	top: 100px;
+	height: -webkit-calc(100% - 100px);
+	width: -webkit-calc(100% - 100px);
 }
 
 #real-website {
