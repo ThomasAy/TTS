@@ -27,9 +27,10 @@ function omnibar_focused(e)
 
 document.getElementById('real-website').onload = function(e)
 {	
+	html = document.getElementById('real-website').contentDocument;
+	document.getElementById('restructured-website').innerHTML = html.body.textContent;
 	sara.nodeListSelected = 'page';
-	sara.elementFocus = 0;
-	sara.nodeLists.page = document.getElementById('real-website').contentDocument.body.querySelectorAll('h1,h2,h3,h4,h5,h6,p,a,select,option,input,form,button,img,table,label,textarea,video');
+	sara.nodeLists.page = document.getElementById('restructured-website').querySelectorAll('h1,h2,h3,h4,h5,h6,p,a,input,button,img,table,label,textarea');
 }
 
 
