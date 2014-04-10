@@ -2,7 +2,8 @@ function Sara(){
 	NodeList.prototype.search = Array.prototype.indexOf;
 	this.nodeLists = {
 		menu : document.querySelectorAll('#omnibar, button[data-role]'),
-		page : null
+		page : null,
+		bookmarks : null
 	};
 	this.nodeListSelected = 'menu';
 	this.elementFocus = 0;
