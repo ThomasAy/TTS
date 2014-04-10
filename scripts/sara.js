@@ -6,15 +6,23 @@ function Sara(){
 	};
 	this.nodeListSelected = 'menu';
 	this.elementFocus = 0;
+	playUtil('bienvenu');
 };
+
 
 Sara.prototype.focus = function(el) {
 	el.focus();
 	this.elementFocus = this.nodeLists[this.nodeListSelected].search(el);
 };
 
+
 Sara.prototype.focusOnOmnibar = function() {
-	document.getElementById('omnibar').focus();
+	this.focus(document.getElementById('omnibar'));
+};
+
+
+Sara.prototype.loadPage = function(url) {
+	document.getElementById('real-website').src = url;
 };
 
 Sara.prototype.nextElement = function() {
@@ -23,6 +31,7 @@ Sara.prototype.nextElement = function() {
 	console.log(this.nodeLists[this.nodeListSelected].item(index).nodeName.toLowerCase());
 	console.log(this.nodeLists[this.nodeListSelected].item(index));
 	this.focus(this.nodeLists[this.nodeListSelected].item(index));
+	this.readElement();
 };
 
 Sara.prototype.previousElement = function() {
@@ -31,6 +40,73 @@ Sara.prototype.previousElement = function() {
 	console.log(this.nodeLists[this.nodeListSelected].item(index).nodeName.toLowerCase());
 	console.log(this.nodeLists[this.nodeListSelected].item(index));
 	this.focus(this.nodeLists[this.nodeListSelected].item(index));
+	this.readElement();
+};
+
+Sara.prototype.readElement = function() {
+	var el = this.nodeLists[this.nodeListSelected].item(this.elementFocus);
+
+	if (this.nodeListSelected == 'menu')
+	{
+		var menuItem = {
+			button_prev:'precedent',
+			omnibar:'barre_recherche',
+			button_submit:'rechercher',
+			button_next:'suivant',
+			button_close:'fermer',
+			button_zoomIn:'zoom',
+			button_zoomOut:'dezoom',
+			button_color:'apparence',
+			button_speechRecognition:'commande_vocale',
+			button_volume:'volume',
+			button_choixVoix:'choix_voix',
+			button_homer:'voix',
+			button_julie:'voix',
+			button_murphy:'voix',
+		};
+
+		var util = el.nodeName.toLowerCase() == 'button' ? menuItem['button_' + el.dataset.role] : menuItem.omnibar;
+		
+	}
+	else
+	{
+		var htmlItem = {
+			h1:'titre1',
+			h2:'titre2',
+			h3:'titre3',
+			h4:'titre4',
+			h5:'titre5',
+			h6:'titre6',
+			p:'paragraphe',
+			a:'lien',
+			select:'liste_choix',
+			option:'choix',
+			input:'champs',
+			form:'formulaire',
+			button:'bouton',
+			img:'image',
+			table:'tableau',
+			label:'libelle',
+			textarea:'zone_saisie',
+			video:'video'
+		};
+
+		var util = htmlItem[el.nodeName.toLowerCase()];
+	}
+
+	playUtil(util, function(){
+		if (el.textContent != "" )
+		{
+			read(el.textContent);
+		};
+	});
+};
+
+Sara.prototype.changeNodeList = function() {
+	if (arguments.length == 1)
+	{
+
+	}
 };
 
 Sara.prototype.browserNextPage = function() {

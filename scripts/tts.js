@@ -325,8 +325,11 @@ Player.prototype.play = function() {
 };
 
 document.addEventListener('keydown',function() {
-    var player = new Audio('assets/audio/'+voice+'/char/'+event.keyCode+'.mp3');
-    player.play();
+    if (event.keyCode != 9) 
+    {
+        var player = new Audio('assets/audio/'+voice+'/char/'+event.keyCode+'.mp3');
+        player.play();
+    };
 });
 
 //Permet de lire un fichier util
@@ -334,4 +337,14 @@ document.addEventListener('keydown',function() {
 function playUtil(url) {
     var player = new Audio('assets/audio/'+voice+'/util/'+url+'.mp3');
     player.play();
+    if(arguments.length == 2)
+    {
+        var cb = arguments[1];
+        if ( typeof cb == 'function')
+        {
+            player.onendedx = cb();
+        };
+        
+    }
+    console.log(arguments);
 }
