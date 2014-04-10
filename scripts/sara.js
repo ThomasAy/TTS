@@ -27,25 +27,19 @@ Sara.prototype.loadPage = function(url) {
 
 Sara.prototype.nextElement = function() {
 	var index = this.elementFocus == this.nodeLists[this.nodeListSelected].length - 1 ? 0 : ++this.elementFocus;
-	console.log(index);
-	console.log(this.nodeLists[this.nodeListSelected].item(index).nodeName.toLowerCase());
-	console.log(this.nodeLists[this.nodeListSelected].item(index));
-	this.focus(this.nodeLists[this.nodeListSelected].item(index));
-	this.readElement();
+	var el = this.nodeLists[this.nodeListSelected].item(index);
+	this.focus(el);
+	this.readElement(el);
 };
 
 Sara.prototype.previousElement = function() {
 	var index = this.elementFocus == 0 ? this.nodeLists[this.nodeListSelected].length - 1 : --this.elementFocus;
-	console.log(index);
-	console.log(this.nodeLists[this.nodeListSelected].item(index).nodeName.toLowerCase());
-	console.log(this.nodeLists[this.nodeListSelected].item(index));
-	this.focus(this.nodeLists[this.nodeListSelected].item(index));
-	this.readElement();
+	var el = this.nodeLists[this.nodeListSelected].item(index);
+	this.focus(el);
+	this.readElement(el);
 };
 
-Sara.prototype.readElement = function() {
-	var el = this.nodeLists[this.nodeListSelected].item(this.elementFocus);
-
+Sara.prototype.readElement = function(el) {
 	if (this.nodeListSelected == 'menu')
 	{
 		var menuItem = {

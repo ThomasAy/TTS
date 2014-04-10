@@ -2,8 +2,8 @@
   "name": "TTS Project",
   "main": "index.html",
   "window" : {
-    "width" : 500,
-    "height" : 500,
+    "width" : 1017,
+    "height" : 675,
     "toolbar" : true,
     "frame" : true
   },

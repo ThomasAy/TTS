@@ -335,16 +335,17 @@ document.addEventListener('keydown',function() {
 //Permet de lire un fichier util
 //Paramètre : (String)url
 function playUtil(url) {
-    var player = new Audio('assets/audio/'+voice+'/util/'+url+'.mp3');
-    player.play();
+    var playerUtil = new Audio('assets/audio/'+voice+'/util/'+url+'.mp3');
+    playerUtil.play();
     if(arguments.length == 2)
     {
         var cb = arguments[1];
         if ( typeof cb == 'function')
         {
-            player.onendedx = cb();
+            playerUtil.addEventListener('ended', function() {
+                cb();
+            });
         };
-        
     }
-    console.log(arguments);
+
 }
