@@ -183,22 +183,12 @@ button[data-role="homer"]{
 	margin: -8px;
 }
 
-button[data-role="closeBookmark"]{
+#closeBouton{
 	position: absolute;
 	background-color: #b40003;
 	top: 0px;
 	right: 0px;
 }
-
-button[data-role="addBookmark"]{
-	background-color: #b40003;
-	
-}
-
-button[data-role="removeBookmark"]{
-	background-color: #b40003;
-}
-
 
 #bookmarkHeader{
 	width: 100%;

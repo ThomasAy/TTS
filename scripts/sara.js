@@ -2,7 +2,8 @@ function Sara(){
 	NodeList.prototype.search = Array.prototype.indexOf;
 	this.nodeLists = {
 		menu : document.querySelectorAll('#omnibar, button[data-role]'),
-		page : null
+		page : null,
+		bookmarks : null
 	};
 	this.nodeListSelected = 'menu';
 	this.elementFocus = 0;
@@ -28,10 +29,11 @@ Sara.prototype.loadPage = function(url) {
 Sara.prototype.nextElement = function() {
 	var index = this.elementFocus == this.nodeLists[this.nodeListSelected].length - 1 ? 0 : ++this.elementFocus;
 	console.log(index);
-	console.log(this.nodeLists[this.nodeListSelected].item(index).nodeName.toLowerCase());
-	console.log(this.nodeLists[this.nodeListSelected].item(index));
-	this.focus(this.nodeLists[this.nodeListSelected].item(index));
-	this.readElement();
+	console.log(this.nodeLists);
+	// console.log(this.nodeLists[this.nodeListSelected].item(index).nodeName.toLowerCase());
+	// console.log(this.nodeLists[this.nodeListSelected].item(index));
+	// this.focus(this.nodeLists[this.nodeListSelected].item(index));
+	// this.readElement();
 };
 
 Sara.prototype.previousElement = function() {

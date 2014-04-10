@@ -1,10 +1,6 @@
 var url = require('url');
 
 function Bookmarks(){
-	document.querySelector('button[data-role=closeBookmark]').onclick = function(){
-	var el = document.getElementById('bookmark');
-	el.style.visibility = 'hidden';
-	};
 
 };
 
@@ -43,6 +39,17 @@ Bookmarks.prototype.openFav = function() {
 	var b = new Bookmarks();
 	var obj = b.getObject();
 
+	var bouton = document.createElement("button");
+	bouton.setAttribute("id", "closeBouton");
+
+  	bouton.innerHTML = '<img class="icon" src="assets/icon/SVG/x.svg">';
+  	el.appendChild(bouton);
+
+  	bouton.onclick = function(){
+		var el = document.getElementById('bookmark');
+		el.style.visibility = 'hidden';
+	};
+
 	var x = document.getElementById("toppings");
 	while (x.length > 0)
 	{
@@ -50,7 +57,6 @@ Bookmarks.prototype.openFav = function() {
 	} 
 
 	for(key in obj){
-		var x = document.getElementById("toppings");
 		var option = document.createElement("option");
 		option.text = key;
 		option.value = obj[key];
@@ -62,6 +68,9 @@ Bookmarks.prototype.openFav = function() {
 		var el = document.getElementById('bookmark');
 		el.style.visibility = 'hidden';
 	};
+
+	sara.nodeLists.bookmarks = document.querySelector('#bookmark option');
+	sara.nodeListSelected = 'bookmarks';
 
 };
 
