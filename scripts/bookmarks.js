@@ -69,7 +69,7 @@ Bookmarks.prototype.openFav = function() {
 		el.style.visibility = 'hidden';
 	};
 
-	sara.nodeLists.bookmarks = document.querySelector('#bookmark option');
+	sara.nodeLists.bookmarks = document.querySelectorAll('#bookmark option');
 	sara.nodeListSelected = 'bookmarks';
 
 };
