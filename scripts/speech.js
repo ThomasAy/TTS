@@ -61,10 +61,10 @@ Speech.prototype.recognize = function() {
   			};
 				var options = {
 				  hostname: 'www.google.com',
-				  path: '/speech-api/v1/recognize?xjerr=1&client=chromium&maxresults=1&lang=fr-FR',
+				  path: '/speech-api/v1/recognize?xjerr=1&client=chromium&lang=fr-FR&maxresults=1&pfilter=0&xjerr=1',
 				  method: 'POST',
 				  headers: {
-				    'Content-type': 'audio/x-flac; rate=16000'
+				    'Content-type': 'audio/x-flac; rate=44100'
 				  }
 				};	
 
