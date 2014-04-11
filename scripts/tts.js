@@ -283,9 +283,11 @@ Player.prototype.download = function(key) {
             http.get('http://voxygen.fr/sites/all/modules/voxygen_voices/assets/proxy/index.php?method=redirect&voice='+voice+'&ts=1393856393019&text='+sVar1, function(response) {
                 http.get(response.headers.location, function(res) {
                     res.pipe(file[key]);
-                    objectPlayer.downloadedArray[key] = true;
-                    objectPlayer.verifArray();
-                    objectPlayer.download(key+1);
+                    res.on('end', function() {
+                        objectPlayer.downloadedArray[key] = true;
+                        objectPlayer.verifArray();
+                        objectPlayer.download(key+1);
+                    });
                 });
                 
             });
