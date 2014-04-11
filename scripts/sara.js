@@ -8,6 +8,7 @@ function Sara(){
 	this.nodeListSelected = 'menu';
 	this.elementFocus = 0;
 	playUtil('bienvenu');
+	this.bookmark = new Bookmarks();
 };
 
 

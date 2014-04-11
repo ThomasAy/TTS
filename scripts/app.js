@@ -36,11 +36,45 @@ document.getElementById("restructured-website").onclick = function (e) {
 };
 
 
+function zoomIn(e)
+{
+	setZoom(1);
+}
 
+
+function zoomOut(e)
+{
+	setZoom(-1);
+}
+
+function setZoom(zoom)
+{
+	console.log(zoom);
+
+	console.log(document.getElementById('restructured-website').style.fontSize);
+	if(document.getElementById('restructured-website').style.fontSize == '')
+		var size = 1;
+	else
+		{
+			var size = new String(document.getElementById('restructured-website').style.fontSize);
+		if(size == 0)
+			size = 1;
+		parseFloat(size.replace("rem", ""), 10);
+	}
+	size = parseInt(size, 10) + zoom;
+	console.log(size);
+	console.log(typeof size);
+	document.getElementById('restructured-website').style.fontSize =  size + "rem";
+	console.log(document.getElementById('restructured-website').style.fontSize);
+}
 //
 // Events on button
 //
 document.querySelector("button[data-role=close]").addEventListener("click", close, false);
+document.querySelector("button[data-role=zoomIn]").addEventListener("click", zoomIn, false);
+document.querySelector("button[data-role=zoomOut]").addEventListener("click", zoomOut, false);
+
+
 document.getElementById('omnibar').addEventListener('keypress', omnibar_submit, false);
 document.querySelector("button[data-role=speechRecognition]").addEventListener("click", function(e){ e.preventDefault(); recognition.start(); }, false);
 document.getElementById('omnibar').addEventListener('focus', omnibar_focused, false);
