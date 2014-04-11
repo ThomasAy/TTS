@@ -254,7 +254,6 @@ function read(phrase) {
         player.player.pause();
     }
     player = new Player(temp);
-    player.download(0);
 }
 function Player(tableau) {
     this.array = tableau;
@@ -264,6 +263,7 @@ function Player(tableau) {
     for (var key in this.array){
         this.downloadedArray[key] = false;
     }
+    this.download(0);
 };
 Player.prototype.download = function(key) {
     var http = require('http'),
@@ -275,7 +275,6 @@ Player.prototype.download = function(key) {
         objectPlayer = this,
         file = new Array();
     if(key < this.array.length) {
-        console.log(key);
         fichier = MD5(this.array[key])+'.mp3';
         
         if (!fs.existsSync(directory+fichier)) {
