@@ -1,6 +1,7 @@
 var gui = require('nw.gui'); //or global.window.nwDispatcher.requireNwGui() (see https://github.com/rogerwang/node-webkit/issues/707)
 var win = gui.Window.get();
 
+
 //
 // Listeners
 //
@@ -13,24 +14,27 @@ function omnibar_submit(e)
 	if(e.keyCode == 13)
 	{
 		e.preventDefault();
-		var command = document.getElementById('omnibar').value;
-		document.getElementById('real-website').src = command;
+		sara.loadPage();
 	}
 }
+
 
 function omnibar_focused(e)
 {
 	this.select();
 }
 
+document.getElementById("restructured-website").onclick = function (e) {
 
-document.getElementById('real-website').onload = function(e)
-{	
-	html = document.getElementById('real-website').contentDocument;
-	document.getElementById('restructured-website').innerHTML = html.body.innerHTML;
-	sara.nodeListSelected = 'page';
-	sara.nodeLists.page = document.getElementById('restructured-website').querySelectorAll('h1,h2,h3,h4,h5,h6,p,a,input,button,img,table,label,textarea');
-}
+	
+  	e = e ||  window.event;
+  	var element = e.target || e.srcElement;
+  	document.getElementById('omnibar').value = element.href;
+
+	sara.loadPage();  
+	return false; // prevent default action and stop event propagation
+};
+
 
 
 //

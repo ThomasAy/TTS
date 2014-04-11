@@ -23,8 +23,28 @@ Sara.prototype.focusOnOmnibar = function() {
 };
 
 
-Sara.prototype.loadPage = function(url) {
-	document.getElementById('real-website').src = url;
+Sara.prototype.loadPage = function() {
+		var command = document.getElementById('omnibar').value;
+
+		console.log("load :" + command);
+		if(command.search("http") == -1)
+			command = "http://" + command;
+		console.log("load :" + command);
+		document.getElementById('omnibar').value = command;
+
+		window.urlDeLaMort = command;
+
+		document.getElementById('restructured-website').innerHTML = '<iframe id="real-website" src="" frameborder="0" nwUserAgent></iframe>';
+		document.getElementById('real-website').onload = function(e)
+			{	
+				html = document.getElementById('real-website').contentDocument;
+				document.getElementById('restructured-website').innerHTML = html.body.innerHTML;
+				sara.nodeListSelected = 'page';
+				sara.nodeLists.page = document.getElementById('restructured-website').querySelectorAll('h1,h2,h3,h4,h5,h6,p,a,input,button,img,table,label,textarea');
+			}
+
+
+		document.getElementById('real-website').src = command;
 };
 
 Sara.prototype.nextElement = function() {

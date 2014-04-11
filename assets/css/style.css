@@ -225,8 +225,8 @@ button[data-role="homer"]{
 	width: -webkit-calc(100% - 100px);
 }
 
-#real-website {
-	display: none;
+#restructured-website {
+	
 	position: absolute;
 	top: 100px;
 	height: -webkit-calc(100% - 100px);
